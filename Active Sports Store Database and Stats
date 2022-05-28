@@ -1,0 +1,53 @@
+--Create Active Sports Store database
+
+CREATE TABLE active_store (id INTEGER PRIMARY KEY, item TEXT, color TEXT, size TEXT, brand TEXT, quantity INTEGER, price INTEGER);
+INSERT INTO active_store VALUES 
+(1, "Women's leggings", "black", "medium", "Adidas", 15, 59.99),
+(2, "Leather jacket", "pink", "small", "Adidas", 25, 59.99),
+
+(3, "SOCKS", "BLACK AND WHITE", "unisex", "Nike", 50, 12.99),
+(4, "Women's T-shirt", "White", "large", "Adidas", 250, 35.99),
+(5, "Women's Tennis Socks", "Blue", "medium", "Adidas", 75, 15.99),
+(6, "Sports Belt", "Black", "large", "Mortan", 25, 59.99),
+(7, "Women's Tennis Shoes", "White", "8", "Adidas", 12, 79.99),
+(8, "Women's Tennis Shoes", "White", "7", "Adidas", 25, 79.99),
+(9, "Women's shorts", "black", "small", "Nike", 50, 45.99),
+(10, "Women's shorts", "Pink", "large", "Nike", 75, 45.99),
+(11, "Capri Women's Shorts", "Black", "Extra large", "Adidas", 89, 89.99),
+(12, "Men Shorts", "Black", "large", "Adidas", 350, 85.99),
+(13, "Women's Running Shoes", "White", "7", "Adidas", 150, 95.99),
+(14, "Women's Running Shoes", "Black", "8", "Nike", 90, 145.99),
+(15, "Men's Running Shoes", "Black", "13", "Nike", 90, 150.99);
+
+-- select all items in store
+SELECT * FROM active_store;
+
+-- find most expensive time
+
+SELECT MAX(price), item FROM active_store;
+
+-- find least expensive item
+
+SELECT MIN(price), item FROM active_store;
+
+--find product with highest inventory
+
+SELECT MAX(quantity), item FROM active_store;
+
+--find product with lowest inventory
+
+SELECT min(quantity), item FROM active_store;
+
+--find number of Adidas brand products in the store
+
+SELECt COUNT(brand) FROM active_store
+WHERE brand = "Adidas";
+
+--find number of Adidas brand products in store
+SELECt COUNT(brand) FROM active_store
+WHERE brand = "Nike";
+
+--Find most expensive products in descending order
+
+SELECT * FROM store
+ORDER BY price desc; 
