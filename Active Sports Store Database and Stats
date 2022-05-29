@@ -51,3 +51,24 @@ WHERE brand = "Nike";
 
 SELECT * FROM store
 ORDER BY price desc; 
+
+--Create List, Label, and Identify Number of Movies From 2000's and Movies From 1990's---
+
+SELECT COUNT (*),
+
+  CASE 
+
+  WHEN Year >= 2000 THEN "2000's Movies"
+
+  WHEN Year <= 1999 THEN "90's Movies"
+
+  ELSE "Unknown"
+
+  END as "Movie_Time_Decade" FROM topmovies
+
+  GROUP BY "Movie_Time_Decade";
+  
+
+
+  
+
