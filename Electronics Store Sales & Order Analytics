@@ -1,0 +1,42 @@
+------ I used SQL to analyze Sales & Orders at different locations and dates-----
+
+
+---- I found oders placed during a specific time frame_____
+
+SELECT orderdate
+FROM BIT_DB.FebSales
+WHERE orderdate between '02/13/19 00:00' AND '02/18/19 00:00'
+
+---- I found the location of an order placed at a specific time and date----
+
+SELECT location
+FROM BIT_DB.FebSales 
+WHERE orderdate = '02/18/19 01:35'
+
+----- I used SQL to find number of order placed at a specific date -------
+
+SELECT sum(quantity)
+FROM BIT_DB.FebSales 
+WHERE orderdate like '02/18/19%'
+
+
+---- I found battery like products within the database-----
+
+SELECT distinct Product
+FROM BIT_DB.FebSales
+WHERE Product like '%Batteries%'
+
+---- I used SQL to find unique products and prices ending in 0.99 cents ---
+
+
+SELECT distinct Product, Price
+FROM BIT_DB.FebSales 
+WHERE Price like '%.99'
+
+--- List all the products sold in Los Angeles in February, and include how many of each were sold----
+
+SELECT Product, SUM(quantity)
+FROM BIT_DB.FebSales 
+WHERE location like '%Los Angeles%'
+GROUP BY Product
+
