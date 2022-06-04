@@ -33,4 +33,16 @@ where e.Title == "Sales Support Agent";
 select distinct i.billingCountry 
 from invoices i;
 
+----This shows the Invoice Total, Customer name, Country, and Sales Agent name for all invoices and customers---
+
+select i.Total, c.FirstName || " " || c.LastName 
+as "Customer", c.Country, e.FirstName || " " || e.LastName as "Sales Agent Name" 
+from Invoices i, Employees e, Customers c 
+where i.CustomerId == c.SupportRepId 
+and c.SupportRepId == e.EmployeeId;
+
+
+
+
+
 
