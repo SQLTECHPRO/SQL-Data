@@ -1,0 +1,36 @@
+--- I carried various analysis for the media store Chinok----
+
+---- Find customers not located in the USA ----
+
+SELECT CustomerId, LastName, Country  FROM chinook.customers
+WHERE Country != "USA"
+GROUP BY Country
+ORDER BY Country;
+
+------ Find Customers From Brazil-----------
+
+SELECT CustomerId, LastName, Country  FROM chinook.customers
+WHERE Country = "Brazil";
+
+----- Show the total sales made by each sales agent -----
+
+SELECT e.FirstName, e.LastName, SUM(i.Total) as "Total Sales" 
+FROM chinook.Employees e, chinook.Customers c, chinook.Invoices i 
+Where e.EmployeeId = c.SupportRepId 
+AND c.CustomerId = i.CustomerId 
+GROUP By e.FirstName, e.LastName
+ORDER BY SUM(i.Total) desc;
+
+----- Select Employees Who Are Sales Agents-----
+
+select e.FirstName, e.LastName, e.employeeID 
+from Employees e 
+where e.Title == "Sales Support Agent";
+
+---Find a unique/distinct list of billing countries from the Invoice table----
+
+
+select distinct i.billingCountry 
+from invoices i;
+
+
