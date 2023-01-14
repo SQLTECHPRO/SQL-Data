@@ -1,0 +1,24 @@
+with heart_admissions AS(
+	select curr.patient_id, curr.diagnosis,curr.admission_date,
+		count(past.admission_date) as prior_admissions
+	from	admissions as curr
+	LEFT join    admissions as past
+		on curr.patient_id = past.patient_id
+    	AND curr.admission_date > past.admission_date
+	where lower(curr.diagnosis) like "%cardiovascular%"
+		or lower(curr.diagnosis) like "%heart%"
+    	or lower(curr.diagnosis) like "%artery%"
+    	or lower(curr.diagnosis) like "%cardiac%"
+    	or lower(curr.diagnosis) like "%myocardi%"
+    	or lower(curr.diagnosis) like "%angina%"
+    	or lower(curr.diagnosis) like "%hypertension%"
+	group by curr.patient_id, curr.diagnosis,curr.admission_date
+)
+
+select	strftime('%Y-%m', admission_date) as admission_month,
+	count(admission_date) as admissions,
+    sum(prior_admissions) as readmissions,
+    sum(prior_admissions)/CAST(count(admission_date) as float) as pct_readmission
+    
+from heart_admissions
+group by 1
